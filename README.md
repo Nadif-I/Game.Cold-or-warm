@@ -1,6 +1,8 @@
 # Game.Cold-or-warm
 It's a game where you have to guess numbers
 
+Excercise ger
+
 Schreiben Sie ein Programm, welches das Spiel "Warm oder Kalt" simuliert.
 
 Das soll wie folgt funktionieren:
