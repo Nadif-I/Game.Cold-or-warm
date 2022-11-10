@@ -84,7 +84,7 @@ class Program
 
         } while (!check);
 
-    // Vergleich User-Eingabe1 und User-Eingabe2
+     // Vergleich User-Eingabe1 und User-Eingabe2
 
         if (userEingabe2 == Start())
         {
