@@ -42,16 +42,17 @@
 
             do
             {
-                Console.WriteLine("User Eingabe");
+                Console.WriteLine("Bitte gebe eine Zahl zwischen 1 und 100 ein!\n");
                 check = int.TryParse(Console.ReadLine(), out userEingabe);
+                
 
                 if (!check)
                 {
-                    Console.WriteLine("Depp keine Buchstaben eingeben!");
+                    Console.WriteLine("\nDepp! Keine Buchstaben eingeben!\n");
                 }
-                else if (userEingabe == 0)
+                else if (userEingabe == 0 || userEingabe >=101)
                 {
-                    Console.WriteLine("Du Anal-phabet da steht 1-100!");
+                    Console.WriteLine("\nDu ANALphabet da steht 1-100!\n");
                 }
 
             } while (!check);
@@ -60,7 +61,7 @@
 
         }
 
-        static bool Ueberpruefen(int parameter)
+        static bool Ueberpruefen(int parameter) //parameter siehe*1  Funktion der Methode= Gibt raus 0||1, ob der User gewonnen hat oder nicht!
         {
             int eingabe = parameter;
             int gesuchteZahl = zufallsZahl;
@@ -74,19 +75,19 @@
             int neu = Math.Abs(eingabe - gesuchteZahl);     // (25 - 50) 25 "Schritte bis gesuchteZahl"
                                                             // gesucht = 50 Bsp.
 
-            if (alt < neu)  //Wenn schritte 
+            if (alt < neu)  // Wenn schritte 
             {
-                Console.WriteLine("Kalt");
+                Console.WriteLine("Es wird kälter\n");
             }
             else if (alt > neu)
             {
-                Console.WriteLine("Warm");
+                Console.WriteLine("Es wird wärmer");
             }
 
             alteEingabe = eingabe;
 
             return false; // gewonnen (Eingabe == zuFallszahl) true - verloren false
-        } //parameter siehe*1  Funktion der Methode= Gibt raus 0||1, ob der User gewonnen hat oder nicht!
+        } 
 
         static void Durchlauf()
         {
@@ -98,10 +99,12 @@
                 {
                     gewonnen = true;
                 }
-            } while (!gewonnen); //Wenn es nicht true ist mach was zwischen Klammern
+            } while (!gewonnen); // Wenn es nicht true ist mach was zwischen Klammern
 
 
-            Console.WriteLine("GEWONNEN!");
+            Console.WriteLine("Du hast GEWONNEN!");
+            Console.WriteLine();
+            Console.WriteLine("Um fortzufahren belibige Taste drücken");
             Console.ReadKey();
 
 
@@ -110,6 +113,7 @@
     }
 
     /* 
+     
      *1 =
     Du übergebe der Methode Ueberpruefen() einen Parameter [die User Eingabe bzw. int von Eingabe()] zur weiteren Verarbeitung.
 
