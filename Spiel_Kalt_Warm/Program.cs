@@ -1,99 +1,120 @@
-﻿namespace Spiel_Kalt_Warm;
-class Program
+﻿namespace Spiel_Kalt_Warm
 {
-    static void Main(string[] args)
-    {                         
-        Start();
-    }
-
-    static int Start()
+    class Program
     {
-        // User-Eingabe anlegen: DAU, Ersteingabe, Treffer?
+        /*
+        ## DONE ##
+               Generierung (1-100)
+               - Random
 
-        int zahl = ZufallsZahl();
-        bool check;
-        int userEingabe1 = 0;
-        return userEingabe1;
+        ## TO-DO ##
 
-        do
+        * Eingabe 1-100
+            - One Input to rule them all
+        * Überprüfung
+            - Eingabe, alte Zahl, neue Zahl
+        * Ausgabe
+        */
+
+        static int zufallsZahl;
+        static int alteEingabe = 0;
+
+
+        static void Main(string[] args)
         {
-            Console.Clear();
-
-        // User-Eingabe
-            
-            Console.Clear();
-            Console.WriteLine("Gebe eine Zahl zwischen 1 und 100 ein: \n");
-            check = int.TryParse(Console.ReadLine(), out userEingabe1);
-
-        // Dau-Sicherheit
-
-            if (!check)
-            {
-                Console.WriteLine("\nNur Ziffern eingeben, du Analphabet!");
-                Console.WriteLine("Weiter mit beliebige Taste...");
-                Console.ReadKey();
-            }
-            
-        } while (!check);
-
-        // Treffer ?
-
-        if (userEingabe1 == zahl)
-        {
-            Console.WriteLine("Du hast gewonnen!");
+            Durchlauf();
         }
-        else
+
+        static int Generierung()
         {
-            ColdWarm();
+            // Generierung random (1-100)
+
+            Random zufallsZahl = new Random();
+            return zufallsZahl.Next(1, 101);
+
         }
-    }
 
-    static int ZufallsZahl()
-    {
-        // Zufallszahl generieren (1-100)#
-
-        Random zufallsZahl = new Random();
-        return zufallsZahl.Next(1, 101);
-        
-        
-    }
+        static int Eingabe()
+        {
+            int userEingabe = 0;
+            bool check;
 
 
-    // Ab der 2. Eingabe => Vergleich: Treffer?, wärmer, kälter
-    static void ColdWarm()
-    {
-        bool check;
-        int userEingabe2 = 0;
-
-        do
-        {          
-     // 2.User-Eingabe
-
-            Console.Clear();
-            Console.WriteLine("Gebe \"nochmal\" eine Zahl zwischen 1 und 100 ein: \n");
-            check = int.TryParse(Console.ReadLine(), out userEingabe2);
-
-     // Dau-Sicherheit für 2.Eingabe
-
-            if (!check)
+            do
             {
-                Console.WriteLine("\nNur Ziffern eingeben, du Analphabet!");
-                Console.WriteLine("Weiter mit beliebige Taste...");
-                Console.ReadKey();
+                Console.WriteLine("User Eingabe");
+                check = int.TryParse(Console.ReadLine(), out userEingabe);
+
+                if (!check)
+                {
+                    Console.WriteLine("Depp keine Buchstaben eingeben!");
+                }
+                else if (userEingabe == 0)
+                {
+                    Console.WriteLine("Du Anal-phabet da steht 1-100!");
+                }
+
+            } while (!check);
+            return userEingabe;
+
+
+        }
+
+        static bool Ueberpruefen(int parameter)
+        {
+            int eingabe = parameter;
+            int gesuchteZahl = zufallsZahl;
+
+            if (eingabe == gesuchteZahl)
+            {
+                return true;
             }
 
-        } while (!check);
+            int alt = Math.Abs(alteEingabe - gesuchteZahl); // (30 - 50) 20 "Schritte bis gesuchteZahl"
+            int neu = Math.Abs(eingabe - gesuchteZahl);     // (25 - 50) 25 "Schritte bis gesuchteZahl"
+                                                            // gesucht = 50 Bsp.
 
-     // Vergleich User-Eingabe1 und User-Eingabe2
+            if (alt < neu)  //Wenn schritte 
+            {
+                Console.WriteLine("Kalt");
+            }
+            else if (alt > neu)
+            {
+                Console.WriteLine("Warm");
+            }
 
-        if (userEingabe2 == Start())
+            alteEingabe = eingabe;
+
+            return false; // gewonnen (Eingabe == zuFallszahl) true - verloren false
+        } //parameter siehe*1  Funktion der Methode= Gibt raus 0||1, ob der User gewonnen hat oder nicht!
+
+        static void Durchlauf()
         {
+            bool gewonnen = false; // er hat nicht gewonnen
+            zufallsZahl = Generierung();
+            do
+            {
+                if (Ueberpruefen(Eingabe()))
+                {
+                    gewonnen = true;
+                }
+            } while (!gewonnen); //Wenn es nicht true ist mach was zwischen Klammern
+
+
+            Console.WriteLine("GEWONNEN!");
+            Console.ReadKey();
+
 
         }
 
     }
 
-    // Wiederholung
-    // Bei Sieg: Ausgabe + Anzahl der Versuche
+    /* 
+     *1 =
+    Du übergebe der Methode Ueberpruefen() einen Parameter [die User Eingabe bzw. int von Eingabe()] zur weiteren Verarbeitung.
+
+
+     */
+
+
 }
-
