@@ -1,4 +1,4 @@
-# Game.Cold-or-warm
+# Game.Cold-or-warm 1.0
 It's a game where you have to guess numbers
 
 Excercise ger
@@ -25,12 +25,4 @@ Das soll wie folgt funktionieren:
 - Am Ende des Programms soll der Spieler gefragt werden, ob er noch eine
   Partie spielen möchte
 
-Optional:
----------
-- Am Anfang des Programms kann der Spieler auch einen "Hardmode" auswählen.
-  Das bedeutet, dass die gesuchte Zahl zwischen 1 und 1000 liegt
-
-- Fügen Sie eine Highscore hinzu um den Spieler mit den wenigsten Versuchen
-  zu finden.
-
-Viel Erfolg!
+#Finished
